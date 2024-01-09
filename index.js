@@ -33,6 +33,7 @@ async function getData() {
 
     let finalData = checkDatePassed(tempArray, data);
     app.get("/OverDueRecords", (req, res) => {
+      console.log(finalData);
       res.send(finalData);
     });
   });
@@ -97,6 +98,7 @@ function checkDatePassed(tempArray, data) {
         }
       });
     }
+    console.log("working");
     return daysSinceCreation === 0 && !checkInTempArray;
   });
 
@@ -107,6 +109,10 @@ setTimeout(getData, 0);
 
 const intervalInMilliseconds = 2 * 60 * 60 * 1000;
 setInterval(getData, intervalInMilliseconds);
+
+app.get("/", async (req, res) => {
+  res.send("Working");
+});
 
 require("dotenv").config();
 app.listen(process.env.PORT, () => {
