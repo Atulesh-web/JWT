@@ -111,6 +111,7 @@ const intervalInMilliseconds = 2 * 60 * 60 * 1000;
 setInterval(getData, intervalInMilliseconds);
 
 app.get("/", async (req, res) => {
+  getData();
   res.send("Working");
 });
 
